@@ -13,5 +13,6 @@ pyclipper==1.2.1
 pytz==2021.1
 scipy==1.6.0
 scikit-image==0.16.2
+pytorch==1.8
 Shapely==1.7.1
 yacs==0.1.8

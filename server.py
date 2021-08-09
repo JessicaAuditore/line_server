@@ -20,7 +20,7 @@ class Server:
     def open_socket(self):
         try:
             s = socket.socket()
-            s.bind(("localhost", 1024))
+            s.bind(("0.0.0.0", 1024))
             s.listen(10)
         except socket.error as msg:
             print(msg)
