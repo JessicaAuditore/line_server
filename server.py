@@ -43,10 +43,10 @@ class Server:
 
     @staticmethod
     def recv_from_client(conn, addr):
-        file_info_size = struct.calcsize('128sl')
+        file_info_size = struct.calcsize('128sq')
         buf = conn.recv(file_info_size)
         if buf:
-            file_name, file_size = struct.unpack('128sl', buf)
+            file_name, file_size = struct.unpack('128sq', buf)
             path = os.path.join(str.encode('./input'), file_name.strip(str.encode('\00')))
             recv_size = 0
             fp = open(path, 'wb')
@@ -64,7 +64,7 @@ class Server:
 
     @staticmethod
     def send_to_client(conn, path, addr):
-        file_head = struct.pack('128sl', bytes(os.path.basename(path).encode('utf-8')), os.stat(path).st_size)
+        file_head = struct.pack('128sq', bytes(os.path.basename(path).encode('utf-8')), os.stat(path).st_size)
         conn.send(file_head)
         fp = open(path, 'rb')
         while 1:
